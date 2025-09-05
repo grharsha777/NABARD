@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmGuard - Revolutionary Farm Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#218085">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="screen active">
+        <div class="welcome-container">
+            <div class="logo-section">
+                <div class="app-logo">🌾</div>
+                <h1>FarmGuard</h1>
+                <p>Revolutionary Farm Management Platform</p>
+            </div>
+            
+            <div class="language-selector">
+                <h3>Select Language / भाषा चुनें</h3>
+                <div class="language-grid">
+                    <button class="language-btn" data-lang="en">
+                        <span class="flag">🇺🇸</span>
+                        <span>English</span>
+                    </button>
+                    <button class="language-btn" data-lang="hi">
+                        <span class="flag">🇮🇳</span>
+                        <span>हिन्दी</span>
+                    </button>
+                    <button class="language-btn" data-lang="te">
+                        <span class="flag">🇮🇳</span>
+                        <span>తెలుగు</span>
+                    </button>
+                    <button class="language-btn" data-lang="ta">
+                        <span class="flag">🇮🇳</span>
+                        <span>தமிழ்</span>
+                    </button>
+                    <button class="language-btn" data-lang="bn">
+                        <span class="flag">🇧🇩</span>
+                        <span>বাংলা</span>
+                    </button>
+                    <button class="language-btn" data-lang="mr">
+                        <span class="flag">🇮🇳</span>
+                        <span>मराठी</span>
+                    </button>
+                    <button class="language-btn" data-lang="gu">
+                        <span class="flag">🇮🇳</span>
+                        <span>ગુજરાતી</span>
+                    </button>
+                    <button class="language-btn" data-lang="pa">
+                        <span class="flag">🇮🇳</span>
+                        <span>ਪੰਜਾਬੀ</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="auth-section">
+                <button class="btn btn--primary btn--full-width" onclick="showLogin()">Login</button>
+                <button class="btn btn--secondary btn--full-width" onclick="showRegister()">Register</button>
+                <button class="btn btn--outline btn--full-width" onclick="showDashboard()">Continue as Guest</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="screen hidden">
+        <div class="auth-container">
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+            <h2>Login to FarmGuard</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" placeholder="Enter password">
+                </div>
+                <button type="button" class="btn btn--primary btn--full-width" onclick="showDashboard()">Login</button>
+                <p class="text-center"><a href="#" onclick="showRegister()">Don't have an account? Register</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Screen -->
+    <div id="registerScreen" class="screen hidden">
+        <div class="auth-container">
+            <button class="back-btn" onclick="showWelcome()">← Back</button>
+            <h2>Register with FarmGuard</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Farm Location</label>
+                    <input type="text" class="form-control" placeholder="Enter your farm location">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" placeholder="Create password">
+                </div>
+                <button type="button" class="btn btn--primary btn--full-width" onclick="showDashboard()">Register</button>
+                <p class="text-center"><a href="#" onclick="showLogin()">Already have an account? Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboardScreen" class="screen hidden">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <h1>FarmGuard Dashboard</h1>
+                <div class="header-actions">
+                    <button class="notification-btn">🔔</button>
+                    <button class="profile-btn">👤</button>
+                </div>
+            </div>
+
+            <!-- Alert Banner -->
+            <div class="alert-banner">
+                <div class="alert-item high-severity">
+                    <span class="alert-icon">⚠️</span>
+                    <span class="alert-text">Heavy rainfall expected tomorrow</span>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card weather-card">
+                    <div class="stat-icon">🌤️</div>
+                    <div class="stat-info">
+                        <h3>28°C</h3>
+                        <p>Partly Cloudy</p>
+                    </div>
+                </div>
+                <div class="stat-card crop-card">
+                    <div class="stat-icon">🌾</div>
+                    <div class="stat-info">
+                        <h3>2 Crops</h3>
+                        <p>Active Growing</p>
+                    </div>
+                </div>
+                <div class="stat-card market-card">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-info">
+                        <h3>₹2,100</h3>
+                        <p>Rice/Quintal</p>
+                    </div>
+                </div>
+                <div class="stat-card alert-card">
+                    <div class="stat-icon">🚨</div>
+                    <div class="stat-info">
+                        <h3>3 Alerts</h3>
+                        <p>Need Attention</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="section">
+                <h2>Quick Actions</h2>
+                <div class="action-grid">
+                    <button class="action-btn" onclick="showChatbot()">
+                        <span class="action-icon">🤖</span>
+                        <span>AI Assistant</span>
+                    </button>
+                    <button class="action-btn" onclick="showWeather()">
+                        <span class="action-icon">🌤️</span>
+                        <span>Weather</span>
+                    </button>
+                    <button class="action-btn" onclick="showCrops()">
+                        <span class="action-icon">🌱</span>
+                        <span>Crop Monitor</span>
+                    </button>
+                    <button class="action-btn" onclick="showSchemes()">
+                        <span class="action-icon">🏛️</span>
+                        <span>Gov Schemes</span>
+                    </button>
+                    <button class="action-btn" onclick="showMarket()">
+                        <span class="action-icon">💰</span>
+                        <span>Market Prices</span>
+                    </button>
+                    <button class="action-btn" onclick="showSensors()">
+                        <span class="action-icon">📊</span>
+                        <span>IoT Sensors</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="section">
+                <h2>Recent Activity</h2>
+                <div class="activity-feed">
+                    <div class="activity-item">
+                        <span class="activity-icon">🌧️</span>
+                        <div class="activity-text">
+                            <p>Weather alert: Heavy rain tomorrow</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🦠</span>
+                        <div class="activity-text">
+                            <p>Disease detected in rice field</p>
+                            <span class="activity-time">4 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">📈</span>
+                        <div class="activity-text">
+                            <p>Rice prices increased by 5%</p>
+                            <span class="activity-time">6 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chatbot Screen -->
+    <div id="chatbotScreen" class="screen hidden">
+        <div class="chat-container">
+            <div class="chat-header">
+                <button class="back-btn" onclick="showDashboard()">← Back</button>
+                <h2>AI Farm Assistant</h2>
+                <button class="voice-btn">🎤</button>
+            </div>
+            
+            <div class="quick-questions">
+                <button class="quick-question-btn" onclick="askQuestion('weather')">
+                    🌤️ Weather Forecast
+                </button>
+                <button class="quick-question-btn" onclick="askQuestion('disease')">
+                    🦠 Crop Disease Help
+                </button>
+                <button class="quick-question-btn" onclick="askQuestion('schemes')">
+                    🏛️ Government Schemes
+                </button>
+                <button class="quick-question-btn" onclick="askQuestion('market')">
+                    💰 Market Prices
+                </button>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        Hello! I'm your AI farm assistant. How can I help you today?
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your question..." class="form-control">
+                <button class="send-btn" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weather Screen -->
+    <div id="weatherScreen" class="screen hidden">
+        <div class="weather-container">
+            <div class="weather-header">
+                <button class="back-btn" onclick="showDashboard()">← Back</button>
+                <h2>Weather Forecast</h2>
+            </div>
+
+            <div class="current-weather">
+                <div class="weather-icon">🌤️</div>
+                <div class="weather-info">
+                    <h1>28°C</h1>
+                    <p>Partly Cloudy</p>
+                    <div class="weather-details">
+                        <span>💧 Humidity: 65%</span>
+                        <span>💨 Wind: 12 km/h</span>
+                        <span>🌧️ Rainfall: 0mm</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forecast-grid">
+                <div class="forecast-item">
+                    <h4>Today</h4>
+                    <div class="forecast-icon">☀️</div>
+                    <p>32°/24°</p>
+                    <span>10% rain</span>
+                </div>
+                <div class="forecast-item">
+                    <h4>Tomorrow</h4>
+                    <div class="forecast-icon">☁️</div>
+                    <p>30°/22°</p>
+                    <span>40% rain</span>
+                </div>
+                <div class="forecast-item">
+                    <h4>Wednesday</h4>
+                    <div class="forecast-icon">🌧️</div>
+                    <p>28°/20°</p>
+                    <span>80% rain</span>
+                </div>
+                <div class="forecast-item">
+                    <h4>Thursday</h4>
+                    <div class="forecast-icon">⛅</div>
+                    <p>29°/21°</p>
+                    <span>30% rain</span>
+                </div>
+            </div>
+
+            <div class="weather-recommendations">
+                <h3>Farming Recommendations</h3>
+                <div class="recommendation-item">
+                    <span class="rec-icon">🌧️</span>
+                    <p>Heavy rain expected Wednesday. Avoid spraying and ensure proper drainage.</p>
+                </div>
+                <div class="recommendation-item">
+                    <span class="rec-icon">🌾</span>
+                    <p>Good conditions for rice flowering stage. Monitor for pests after rain.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Government Schemes Screen -->
+    <div id="schemesScreen" class="screen hidden">
+        <div class="schemes-container">
+            <div class="schemes-header">
+                <button class="back-btn" onclick="showDashboard()">← Back</button>
+                <h2>Government Schemes</h2>
+            </div>
+
+            <div class="schemes-list">
+                <div class="scheme-card">
+                    <div class="scheme-header">
+                        <h3>PM-KISAN Samman Nidhi</h3>
+                        <span class="status status--success">Active</span>
+                    </div>
+                    <p class="scheme-amount">₹6,000/year</p>
+                    <p class="scheme-desc">Direct income support to farmers</p>
+                    <p class="scheme-eligibility">Eligibility: Small & marginal farmers</p>
+                    <button class="btn btn--primary btn--sm">Apply Now</button>
+                </div>
+
+                <div class="scheme-card">
+                    <div class="scheme-header">
+                        <h3>Pradhan Mantri Fasal Bima Yojana</h3>
+                        <span class="status status--success">Active</span>
+                    </div>
+                    <p class="scheme-amount">2-5% premium</p>
+                    <p class="scheme-desc">Crop insurance against natural calamities</p>
+                    <p class="scheme-eligibility">Eligibility: All farmers</p>
+                    <button class="btn btn--primary btn--sm">Apply Now</button>
+                </div>
+
+                <div class="scheme-card">
+                    <div class="scheme-header">
+                        <h3>Kisan Credit Card</h3>
+                        <span class="status status--success">Active</span>
+                    </div>
+                    <p class="scheme-amount">Up to ₹3 lakh</p>
+                    <p class="scheme-desc">Easy access to credit</p>
+                    <p class="scheme-eligibility">Eligibility: All farmers</p>
+                    <button class="btn btn--primary btn--sm">Apply Now</button>
+                </div>
+
+                <div class="scheme-card">
+                    <div class="scheme-header">
+                        <h3>PM Krishi Sinchai Yojana</h3>
+                        <span class="status status--success">Active</span>
+                    </div>
+                    <p class="scheme-amount">Subsidy on irrigation</p>
+                    <p class="scheme-desc">Water conservation & irrigation efficiency</p>
+                    <p class="scheme-eligibility">Eligibility: All farmers</p>
+                    <button class="btn btn--primary btn--sm">Apply Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Crop Monitoring Screen -->
+    <div id="cropsScreen" class="screen hidden">
+        <div class="crops-container">
+            <div class="crops-header">
+                <button class="back-btn" onclick="showDashboard()">← Back</button>
+                <h2>Crop Monitoring</h2>
+                <button class="btn btn--primary btn--sm">Add Crop</button>
+            </div>
+
+            <div class="crops-list">
+                <div class="crop-card">
+                    <div class="crop-image">🌾</div>
+                    <div class="crop-info">
+                        <h3>Rice</h3>
+                        <p class="crop-stage">Stage: Flowering</p>
+                        <div class="crop-details">
+                            <span class="crop-health status status--success">Good Health</span>
+                            <span class="crop-area">Area: 2.5 acres</span>
+                        </div>
+                        <div class="crop-stats">
+                            <span>🗓️ 45 days to harvest</span>
+                            <span>📊 Predicted yield: 3.2 tons</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="crop-card">
+                    <div class="crop-image">🌾</div>
+                    <div class="crop-info">
+                        <h3>Wheat</h3>
+                        <p class="crop-stage">Stage: Germination</p>
+                        <div class="crop-details">
+                            <span class="crop-health status status--success">Excellent Health</span>
+                            <span class="crop-area">Area: 1.8 acres</span>
+                        </div>
+                        <div class="crop-stats">
+                            <span>🗓️ 120 days to harvest</span>
+                            <span>📊 Predicted yield: 2.1 tons</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-alerts">
+                <h3>Disease Alerts</h3>
+                <div class="alert-item medium-severity">
+                    <span class="alert-icon">🦠</span>
+                    <div class="alert-content">
+                        <p>Brown spot detected in rice field</p>
+                        <button class="btn btn--outline btn--sm">View Treatment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Market Prices Screen -->
+    <div id="marketScreen" class="screen hidden">
+        <div class="market-container">
+            <div class="market-header">
+                <button class="back-btn" onclick="showDashboard()">← Back</button>
+                <h2>Market Prices</h2>
+                <select class="form-control market-selector">
+                    <option>Local Mandi</option>
+                    <option>Regional Market</option>
+                    <option>National Average</option>
+                </select>
+            </div>
+
+            <div class="market-list">
+                <div class="market-item">
+                    <div class="market-crop">
+                        <h3>Rice</h3>
+                        <p>Local Mandi</p>
+                    </div>
+                    <div class="market-price">
+                        <h3>₹2,100</h3>
+                        <p>/quintal</p>
+                        <span class="price-change positive">+5%</span>
+                    </div>
+                </div>
+
+                <div class="market-item">
+                    <div class="market-crop">
+                        <h3>Wheat</h3>
+                        <p>Local Mandi</p>
+                    </div>
+                    <div class="market-price">
+                        <h3>₹2,350</h3>
+                        <p>/quintal</p>
+                        <span class="price-change positive">+3%</span>
+                    </div>
+                </div>
+
+                <div class="market-item">
+                    <div class="market-crop">
+                        <h3>Onion</h3>
+                        <p>Local Mandi</p>
+                    </div>
+                    <div class="market-price">
+                        <h3>₹3,500</h3>
+                        <p>/quintal</p>
+                        <span class="price-change negative">-2%</span>
+                    </div>
+                </div>
+
+                <div class="market-item">
+                    <div class="market-crop">
+                        <h3>Potato</h3>
+                        <p>Local Mandi</p>
+                    </div>
+                    <div class="market-price">
+                        <h3>₹1,800</h3>
+                        <p>/quintal</p>
+                        <span class="price-change positive">+8%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="market-trends">
+                <h3>Price Trends</h3>
+                <p>Rice prices have been steadily increasing due to good demand and reduced supply from neighboring states.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- IoT Sensors Screen -->
+    <div id="sensorsScreen" class="screen hidden">
+        <div class="sensors-container">
+            <div class="sensors-header">
+                <button class="back-btn" onclick="showDashboard()">← Back</button>
+                <h2>IoT Sensor Data</h2>
+                <span class="last-updated">Last updated: 5 min ago</span>
+            </div>
+
+            <div class="sensors-grid">
+                <div class="sensor-card">
+                    <div class="sensor-icon">💧</div>
+                    <div class="sensor-info">
+                        <h3>Soil Moisture</h3>
+                        <p class="sensor-value">68%</p>
+                        <span class="sensor-status status--success">Optimal</span>
+                    </div>
+                </div>
+
+                <div class="sensor-card">
+                    <div class="sensor-icon">🌡️</div>
+                    <div class="sensor-info">
+                        <h3>Soil Temperature</h3>
+                        <p class="sensor-value">24°C</p>
+                        <span class="sensor-status status--success">Good</span>
+                    </div>
+                </div>
+
+                <div class="sensor-card">
+                    <div class="sensor-icon">⚗️</div>
+                    <div class="sensor-info">
+                        <h3>Soil pH</h3>
+                        <p class="sensor-value">6.8</p>
+                        <span class="sensor-status status--success">Neutral</span>
+                    </div>
+                </div>
+
+                <div class="sensor-card">
+                    <div class="sensor-icon">🧪</div>
+                    <div class="sensor-info">
+                        <h3>Nitrogen (N)</h3>
+                        <p class="sensor-value">45 mg/kg</p>
+                        <span class="sensor-status status--warning">Low</span>
+                    </div>
+                </div>
+
+                <div class="sensor-card">
+                    <div class="sensor-icon">🧪</div>
+                    <div class="sensor-info">
+                        <h3>Phosphorus (P)</h3>
+                        <p class="sensor-value">12 mg/kg</p>
+                        <span class="sensor-status status--success">Good</span>
+                    </div>
+                </div>
+
+                <div class="sensor-card">
+                    <div class="sensor-icon">🧪</div>
+                    <div class="sensor-info">
+                        <h3>Potassium (K)</h3>
+                        <p class="sensor-value">180 mg/kg</p>
+                        <span class="sensor-status status--success">Excellent</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recommendations">
+                <h3>Recommendations</h3>
+                <div class="recommendation-item">
+                    <span class="rec-icon">💧</span>
+                    <p>Soil moisture is optimal. Continue current irrigation schedule.</p>
+                </div>
+                <div class="recommendation-item">
+                    <span class="rec-icon">🧪</span>
+                    <p>Nitrogen levels are low. Consider applying urea fertilizer.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav hidden" id="bottomNav">
+        <button class="nav-item active" onclick="showDashboard()">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item" onclick="showCrops()">
+            <span class="nav-icon">🌱</span>
+            <span class="nav-label">Crops</span>
+        </button>
+        <button class="nav-item" onclick="showWeather()">
+            <span class="nav-icon">🌤️</span>
+            <span class="nav-label">Weather</span>
+        </button>
+        <button class="nav-item" onclick="showMarket()">
+            <span class="nav-icon">💰</span>
+            <span class="nav-label">Market</span>
+        </button>
+        <button class="nav-item" onclick="showChatbot()">
+            <span class="nav-icon">🤖</span>
+            <span class="nav-label">Assistant</span>
+        </button>
+    </nav>
+
+    <script src="app.js"></script>
+</body>
+</html>
